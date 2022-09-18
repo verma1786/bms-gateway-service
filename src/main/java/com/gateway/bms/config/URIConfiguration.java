@@ -29,5 +29,7 @@ public class URIConfiguration extends CorsConfiguration {
 
         return new CorsWebFilter(source);
     }
+
+
 }
 
