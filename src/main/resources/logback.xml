@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+    <property name="LOG_FILE" value="${user.home}/logs/app.log"/>
     <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d [%thread] %-5level %-50logger{40} - %msg%n</pattern>
@@ -7,13 +8,13 @@
     </appender>
 
     <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>MyApp.log</file>
+        <file>${LOG_FILE}</file>
         <encoder>
             <pattern>%d [%thread] %-5level %-50logger{40} - %msg%n</pattern>
         </encoder>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>MyApp-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>app-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxFileSize>1MB</maxFileSize>
             <maxHistory>30</maxHistory>
             <totalSizeCap>10MB</totalSizeCap>
