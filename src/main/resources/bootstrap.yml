@@ -1,0 +1,40 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: BMS-GATEWAY-SERVICE
+  cloud:
+    config:
+      uri: http://10.68.238.4:8989
+      profile: dev
+      name: bms-gateway-service
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowed-origins: "*"
+            allowed-methods: "*"
+            allowed-headers: "*"
+  
+server:
+   address: 10.68.238.4
+
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutinmilliseconds: 5000
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - hystrix.stream
+          - "*"
+
